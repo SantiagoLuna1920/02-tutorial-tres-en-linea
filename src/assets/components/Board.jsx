@@ -21,13 +21,20 @@ const Board = () => {
 
   const winner = calculateWinner( squares );
 
+
   let status;
 
-  if( winner ) {
+  if(winner) {
     status = 'Ganador: ' + winner;
+  }
+  
+  else if( squares.indexOf(null) === -1 ) {
+    status = 'Empate';
   } else {
     status = 'Siguiente jugador: ' + ( (xIsNext) ? 'X' : 'O' );
   }
+
+  
 
   return (
     <>   
@@ -46,6 +53,13 @@ const Board = () => {
     <Square value={squares[6]} onSquareClick={(() => handleClick(6))} />
     <Square value={squares[7]} onSquareClick={(() => handleClick(7))} />
     <Square value={squares[8]} onSquareClick={(() => handleClick(8))} />
+    </div>
+    <div style={{color: status === 'Empate' ? 'red' : 'blue'}}>
+<button onClick={()=>{
+setSquares(Array(9).fill(null),
+setXIsNext(true) )}}>
+  Nuevo Juego
+</button>
     </div>
     </>
   )
